@@ -2,7 +2,7 @@ Summary:	Privledged helper for utmpx updates
 Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.2
-Release:	1
+Release:	3
 Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
@@ -50,7 +50,7 @@ strip $RPM_BUILD_ROOT%{_sbindir}/*
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
  
-%post -p /sbin/ldconfig
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
