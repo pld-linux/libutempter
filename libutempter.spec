@@ -1,12 +1,14 @@
-Summary:	Privledged helper for utmpx updates
-Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
+Summary:	Privileged helper for utmpx updates
+Summary(pl):	Program pozwalaj±cy na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.2
 Release:	5
 License:	MIT
 Group:		Base
 Group(de):	Gründsätzlich
+Group(es):	Base
 Group(pl):	Podstawowe
+Group(pt_BR):	Base
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-lastlog.patch
 Prereq:		/sbin/ldconfig
@@ -15,7 +17,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Utempter is a utility which allows programs to log information to a
-privledged file (/var/run/utmpx), without compromising system
+privileged file (/var/run/utmpx), without compromising system
 security. It accomplishes this task by acting as a buffer between root
 and the programs.
 
@@ -25,17 +27,22 @@ pliku /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 
 %package devel
 Summary:	utempter library header files
+Summary(pl):	Pliki nag³ówkowe biblioteki utemptera
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
 utempter library header files.
 
 %description -l pl devel
-Pliki nag³ówkowe utemptera.
+Pliki nag³ówkowe biblioteki utemptera.
 
 %prep
 %setup -q
@@ -51,11 +58,11 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
