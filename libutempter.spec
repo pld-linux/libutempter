@@ -20,7 +20,7 @@ accomplishes this task by acting as a buffer between root and the programs.
 Utempter jest programem pozwalaj±cym na zapisywanie uzytkownikom do pliku
 /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 
-%package	devel
+%package devel
 Summary:	utempter library header files
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
@@ -52,8 +52,7 @@ install -d $RPM_BUILD_ROOT/var/run
 %{_sbindir}/groupadd -g 60 utmpx
 %{_bindir}/update-db
 
-%post
-/sbin/ldconfig
+%post -p /sbin/ldconfig
 
 if [ -f /var/run/utmpx ]; then
 	chown root.utmpx /var/run/utmpx
