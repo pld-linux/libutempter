@@ -59,11 +59,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) /usr/sbin/utempter
-%attr(0755,root,root) /usr/lib/lib*.so.*.*
+%attr(0755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(0755,root,root) /usr/lib/lib*.so
+%attr(0755,root,root) %{_libdir}/lib*.so
 /usr/include/utempter.h
 
 %changelog
