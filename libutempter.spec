@@ -10,6 +10,7 @@ Release:	9
 License:	MIT
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
+# Source0-md5: 2d9586bdaaaec2608b07da21b7436dd9
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
 PreReq:		SysVinit >= 2.76-14
