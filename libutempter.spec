@@ -90,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) %{_sbindir}/utempter
-%attr(755,root,utmp) %{_sbindir}/utmp-cleanup
+%attr(755,root,root) %{_sbindir}/utmp-cleanup
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %attr(664,root,utmp) %ghost /var/run/utmpx
