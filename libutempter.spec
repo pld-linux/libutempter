@@ -2,7 +2,7 @@ Summary:	Privledged helper for utmpx updates
 Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.2
-Release:	3
+Release:	5
 License:	MIT
 Group:		Base
 Group(de):	Gründsätzlich
