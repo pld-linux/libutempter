@@ -49,13 +49,13 @@ install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
  
 %pre 
-%{_sbindir}/groupadd -g 60 utmpx
+%{_sbindir}/groupadd -g -f 60 utmp
 %{_bindir}/update-db
 
 %post -p /sbin/ldconfig
 
 if [ -f /var/run/utmpx ]; then
-	chown root.utmpx /var/run/utmpx
+	chown root.utmp /var/run/utmpx
 	chmod 664 /var/run/utmpx
 fi
 
