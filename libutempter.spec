@@ -1,7 +1,7 @@
 Summary:	Privledged helper for utmpx updates
 Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
-Version:	0.5
+Version:	0.5.1
 Release:	3
 Copyright:	MIT
 Group:		Base
@@ -71,15 +71,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-
-%attr(2711,root,utmp) %{_sbindir}/*
+%attr(2755,root,utmp) %{_sbindir}/*
 %attr(0755,root,root) %{_libdir}/lib*.so.*
 
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
 %files devel
 %defattr(644,root,root,755)
-
 %attr(755,root,root) %{_libdir}/lib*.so
-
 %{_includedir}/utempter.h
