@@ -22,7 +22,7 @@ Utempter jest programem pozwalaj±cym na zapisywanie uzytkownikom do pliku
 
 %package	devel
 Summary:	utempter library header files
-Group:		Development/Libraties
+Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
