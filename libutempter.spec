@@ -8,6 +8,7 @@ Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.gz
 Prereq:		shadow
+Prereq:		/sbin/ldconfig
 Requires:	SysVinit >= 2.76-14
 BuildRoot:	/tmp/%{name}-%{version}-root
 
@@ -52,7 +53,8 @@ install -d $RPM_BUILD_ROOT/var/run
 %{_sbindir}/groupadd -g -f 60 utmp
 %{_bindir}/update-db
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
 if [ -f /var/run/utmpx ]; then
 	chown root.utmp /var/run/utmpx
