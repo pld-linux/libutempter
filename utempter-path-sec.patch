@@ -1,0 +1,10 @@
+--- utempter-0.5.3/utempter.c.orig	Tue Apr 20 10:40:17 2004
++++ utempter-0.5.3/utempter.c	Tue Apr 20 10:56:29 2004
+@@ -27,6 +27,7 @@
+     if (strstr(device, "/../") || strstr(device, "/./") || 
+ 	strstr(device, "//")) {
+ 	fprintf(stderr, "a simple path is required\n");
++	exit(1);
+     }
+ 
+     if (strncmp(device, "/dev/", 5)) {
