@@ -9,7 +9,8 @@ Version:	0.5.2
 Release:	9
 License:	MIT
 Group:		Base
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://distro.ibiblio.org/pub/Linux/distributions/slackware/slackware_source/l/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	0179e5c4a8055b8dced92066b8fbcd08
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
 PreReq:		SysVinit >= 2.76-14
