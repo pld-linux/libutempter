@@ -71,7 +71,7 @@ Pliki nag³ówkowe oraz biblioteki utemptera.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} PREFIX=$RPM_BUILD_ROOT install
+%{__make} PREFIX=$RPM_BUILD_ROOT LIBDIR=%{_libdir} install
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
@@ -85,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) %{_sbindir}/*
-%attr(0755,root,root) %{_libdir}/lib*.so.*
+%attr(0755,root,root) %{_libdir}/lib*.so.*.*
 
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
