@@ -6,24 +6,26 @@ Release:	3
 Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
-Source:		%{name}-%{version}.tar.gz
-Patch:		utempter-lastlog.patch
+Source0:	%{name}-%{version}.tar.gz
+Patch0:		utempter-lastlog.patch
 Prereq:		/sbin/ldconfig
-Prereq:         SysVinit >= 2.76-14
+Prereq:		SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Utempter is a utility which allows programs to log information to a
-privledged file (/var/run/utmpx), without compromising system security. It
-accomplishes this task by acting as a buffer between root and the programs.
+privledged file (/var/run/utmpx), without compromising system
+security. It accomplishes this task by acting as a buffer between root
+and the programs.
 
 %description -l pl
-Utempter jest programem pozwalaj±cym na zapisywanie uzytkownikom do pliku
-/var/run/utmpx bez naruszania bezpieczeñstwa systemu.
+Utempter jest programem pozwalaj±cym na zapisywanie uzytkownikom do
+pliku /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 
 %package devel
 Summary:	utempter library header files
 Group:		Development/Libraries
+Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
