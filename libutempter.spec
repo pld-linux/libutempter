@@ -5,12 +5,12 @@ Summary(pt_BR):	Programa para atualizaГЦo do utmp/wtmp
 Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
-Version:	0.5.2
-Release:	10
+Version:	0.5.3
+Release:	1
 License:	MIT
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
-# Source0-md5: 2d9586bdaaaec2608b07da21b7436dd9
+# Source0-md5:	44ffda459980482028fd90500a96b21b
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
 PreReq:		SysVinit >= 2.76-14
@@ -67,11 +67,15 @@ Pliki nagЁСwkowe oraz biblioteki utemptera.
 %patch1 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} PREFIX=$RPM_BUILD_ROOT install
+%{__make} install \
+	LIBDIR="%{_libdir}" \
+	RPM_BUILD_ROOT=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
