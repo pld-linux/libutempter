@@ -6,13 +6,14 @@ Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.3
-Release:	1
+Release:	2
 License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	44ffda459980482028fd90500a96b21b
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
+Patch2:		%{name}-path-sec.patch
 PreReq:		SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libutempter0
@@ -65,6 +66,7 @@ Pliki nagЁСwkowe oraz biblioteki utemptera.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} \
