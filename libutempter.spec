@@ -5,10 +5,6 @@ Version:	0.5.2
 Release:	6
 License:	MIT
 Group:		Base
-Group(de):	Gründsätzlich
-Group(es):	Base
-Group(pl):	Podstawowe
-Group(pt_BR):	Base
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-lastlog.patch
 PreReq:		SysVinit >= 2.76-14
@@ -28,13 +24,6 @@ pliku /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 Summary:	utempter library and header files
 Summary(pl):	Pliki nag³ówkowe oraz biblioteki utemptera
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
