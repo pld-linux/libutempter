@@ -6,13 +6,14 @@ Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.2
-Release:	9
+Release:	10
 License:	MIT
 Group:		Base
 Source0:	http://distro.ibiblio.org/pub/Linux/distributions/slackware/slackware_source/l/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	0179e5c4a8055b8dced92066b8fbcd08
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
+Patch2:		%{name}-path-sec.patch
 PreReq:		SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libutempter0
@@ -65,13 +66,18 @@ Pliki nagЁСwkowe oraz biblioteki utemptera.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} PREFIX=$RPM_BUILD_ROOT LIBDIR=%{_libdir} install
+
+%{__make} install \
+	PREFIX=$RPM_BUILD_ROOT \
+	LIBDIR=%{_libdir}
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
@@ -85,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) %{_sbindir}/*
-%attr(0755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
