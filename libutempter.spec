@@ -1,8 +1,12 @@
 Summary:	Privileged helper for utmpx updates
+Summary(es):	Programa para actualizaciСn del utmp/wtmp
 Summary(pl):	Program pozwalaj╠cy na zapisywanie w utmpx
+Summary(pt_BR):	Programa para atualizaГЦo do utmp/wtmp
+Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
+Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.2
-Release:	6
+Release:	8
 License:	MIT
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
@@ -16,9 +20,30 @@ privileged file (/var/run/utmpx), without compromising system
 security. It accomplishes this task by acting as a buffer between root
 and the programs.
 
+%description -l es
+Programa para actualizaciСn del utmp/wtmp.
+
 %description -l pl
 Utempter jest programem pozwalaj╠cym u©ytkownikom na zapisywanie do
 pliku /var/run/utmpx bez naruszania bezpieczeЯstwa systemu.
+
+%description -l pt_BR
+O Utempter И um utilitАrios que permite a programas guardar informaГЦo
+Ю arquivos privilegiados (/var/run/utmp), sem comprometer a seguranГa
+do sistema. Ele faz esta tarefa atuando como um "buffer" entre o
+usuАrio root e os programas.
+
+%description -l ru
+Utempter - это утилита, которая позволяет программам записывать
+информацию в привилегированный файл (/var/run/utmp) без нарушения
+системной безопасности. Она исполняет эту задачу, выступая буфером
+между root'ом и пользовательскими программами.
+
+%description -l uk
+Utempter - це утил╕та, що дозволя╓ програмам записувати ╕нформац╕ю в
+прив╕лейований файл (/var/run/utmp) без порушення системно╖ безпеки.
+Вона викону╓ цю задачу, виступаючи буфером м╕ж root'ом та програмами
+користувача.
 
 %package devel
 Summary:	utempter library and header files
