@@ -82,19 +82,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so
 
 %{_includedir}/utempter.h
-
-%changelog
-* Sun Jun 13 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
-  [0.5-3]
-- major changes,
-- group utmpx with gid 60,
-- only /var/run/utmpx is owned by this packet,
-- groupdel in %post 
-- /usr/bin/update-db in %pre & %postun
-
-* Wed Apr 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
-  [0.5-2]
-- added -q %setup parameter,
-- added stripping shared library and binaries,
-- added devel subpackage,
-- removed /sbin/ldconfig from Prereq (this is automatically generated).
