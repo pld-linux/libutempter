@@ -50,7 +50,7 @@ install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
  
 %pre 
-%{_sbindir}/groupadd -g -f 60 utmp
+%{_sbindir}/groupadd -f -r -g 60 utmp
 %{_bindir}/update-db
 
 %post
