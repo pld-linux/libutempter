@@ -6,7 +6,7 @@ Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawy
 Source:		%{name}-%{version}.tar.gz
-Prereq:		/usr/sbin/groupadd, fileutils
+Prereq:		%{_sbindir}/groupadd, fileutils
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -36,7 +36,7 @@ make PREFIX=$RPM_BUILD_ROOT install
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/{lib/lib*.so.*.*,sbin/*}
 
 %pre 
-/usr/sbin/groupadd -r -f utmp
+%{_sbindir}/groupadd -r -f utmp
 
 %post
 /sbin/ldconfig
@@ -58,13 +58,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(2755,root,utmp) /usr/sbin/utempter
+%attr(2755,root,utmp) %{_sbindir}/utempter
 %attr(0755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(0755,root,root) %{_libdir}/lib*.so
-/usr/include/utempter.h
+%{_includedir}/utempter.h
 
 %changelog
 * Wed Apr 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
