@@ -7,7 +7,7 @@ Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.3
 Release:	1
-License:	MIT
+License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	44ffda459980482028fd90500a96b21b
@@ -69,10 +69,11 @@ Pliki nagЁСwkowe oraz biblioteki utemptera.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	RPM_OPT_FLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	LIBDIR="%{_libdir}" \
 	RPM_BUILD_ROOT=$RPM_BUILD_ROOT
@@ -89,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) %{_sbindir}/*
-%attr(0755,root,root) %{_libdir}/lib*.so.*
+%attr(0755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
