@@ -10,7 +10,7 @@ Source:		%{name}-%{version}.tar.gz
 Prereq:		shadow
 Prereq:		/sbin/ldconfig
 Requires:	SysVinit >= 2.76-14
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Utempter is a utility which allows programs to log information to a
