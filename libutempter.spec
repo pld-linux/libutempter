@@ -7,9 +7,8 @@ Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.gz
-Prereq:		shadow
 Prereq:		/sbin/ldconfig
-Requires:	SysVinit >= 2.76-14
+Prereq:         SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,9 +48,6 @@ strip $RPM_BUILD_ROOT%{_sbindir}/*
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
  
-%pre 
-%{_sbindir}/groupadd -f -r -g 60 utmp
-%{_bindir}/update-db
 
 %post
 /sbin/ldconfig
@@ -64,8 +60,6 @@ fi
 
 %postun
 /sbin/ldconfig
-%{_sbindir}/groupdel utmpx
-%{_bindir}/update-db
 
 %clean
 rm -rf $RPM_BUILD_ROOT
