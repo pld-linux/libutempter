@@ -11,8 +11,7 @@ Group(pl):	Podstawowe
 Group(pt_BR):	Base
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-lastlog.patch
-Prereq:		/sbin/ldconfig
-Prereq:		SysVinit >= 2.76-14
+PreReq:		SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
