@@ -1,12 +1,13 @@
 Summary:	Privledged helper for utmpx updates
 Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
-Version:	0.5.1
-Release:	5
+Version:	0.5.2
+Release:	1
 Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.gz
+Patch:		utempter-lastlog.patch
 Prereq:		/sbin/ldconfig
 Prereq:         SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,6 +35,7 @@ Pliki nag³ówkowe utempter.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS"
@@ -48,12 +50,8 @@ strip $RPM_BUILD_ROOT%{_sbindir}/*
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
  
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %clean
 rm -rf $RPM_BUILD_ROOT
