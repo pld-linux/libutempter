@@ -26,8 +26,8 @@ Utempter jest programem pozwalaj±cym u¿ytkownikom na zapisywanie do
 pliku /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 
 %package devel
-Summary:	utempter library header files
-Summary(pl):	Pliki nag³ówkowe biblioteki utemptera
+Summary:	utempter library and header files
+Summary(pl):	Pliki nag³ówkowe oraz biblioteki utemptera
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
 Group(es):	Desarrollo/Bibliotecas
@@ -39,10 +39,10 @@ Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
-utempter library header files.
+utempter library and header files.
 
-%description -l pl devel
-Pliki nag³ówkowe biblioteki utemptera.
+%description devel -l pl
+Pliki nag³ówkowe oraz biblioteki utemptera.
 
 %prep
 %setup -q
