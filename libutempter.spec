@@ -40,11 +40,11 @@ Pliki nag³ówkowe utempter.
 %patch -p1
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS"
+%{__make} CFLAGS="$RPM_OPT_FLAGS"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make PREFIX=$RPM_BUILD_ROOT install
+%{__make} PREFIX=$RPM_BUILD_ROOT install
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 strip $RPM_BUILD_ROOT%{_sbindir}/*
