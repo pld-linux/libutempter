@@ -70,10 +70,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 
-%attr(2711,root,utmpx) %{_sbindir}/*
-%attr(0755,root, root) %{_libdir}/lib*.so.*
+%attr(2711,root,utmp) %{_sbindir}/*
+%attr(0755,root,root) %{_libdir}/lib*.so.*
 
-%attr(664,root,utmpx) %ghost /var/run/utmpx
+%attr(664,root,utmp) %ghost /var/run/utmpx
 
 %files devel
 %defattr(644,root,root,755)
