@@ -13,6 +13,7 @@ Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-lastlog.patch
 PreReq:		SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	libutempter0
 
 %description
 Utempter is a utility which allows programs to log information to a
@@ -50,6 +51,7 @@ Summary:	utempter library and header files
 Summary(pl):	Pliki nag³ówkowe oraz biblioteki utemptera
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Obsoletes:	libutempter0-devel
 
 %description devel
 utempter library and header files.
