@@ -1,29 +1,37 @@
-Summary: Privledged helper for utmp/wtmp updates
-Name: utempter
-%define version 0.5
-Version: %{version}
-Release: 1
-Copyright: MIT
-Group: System Environment/Base
-Source: utempter-%{version}.tar.gz
-BuildRoot: /var/tmp/utempter-root
-Prereq: /usr/sbin/groupadd, /sbin/ldconfig, fileutils
+Summary:	Privledged helper for utmp/wtmp updates
+Name:		utempter
+Version:	0.5
+Release:	2
+Copyright:	MIT
+Group:		Base
+Source:		%{name}-%{version}.tar.gz
+Prereq:		/usr/sbin/groupadd, fileutils
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Utempter is a utility which allows programs to log information to a
-privledged file (/var/run/utmp), without compromising system security.
-It accomplishes this task by acting as a buffer between root and the
-programs.
+privledged file (/var/run/utmp), without compromising system security. It
+accomplishes this task by acting as a buffer between root and the programs.
+
+%package devel
+Summary:	utempter library header files
+Group:		Development/Libraties
+Requires:	%{name} = %{version}
+
+%description devel
+utempter library header files.
 
 %prep
-%setup 
+%setup -q
 
 %build
-make RPM_OPT_FLAGS="$RPM_OPT_FLAGS"
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
 make PREFIX=$RPM_BUILD_ROOT install
+
+strip --strip-unneeded $RPM_BUILD_ROOT/usr/{lib/lib*.so.*.*,sbin/*}
 
 %pre 
 /usr/sbin/groupadd -r -f utmp
@@ -47,6 +55,19 @@ fi
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(02755, root, utmp) /usr/sbin/utempter
-/usr/lib/libutempter.so*
+%defattr(644,root,root,755)
+%attr(2755,root,utmp) /usr/sbin/utempter
+%attr(0755,root,root) /usr/lib/lib*.so.*.*
+
+%files devel
+%defattr(644,root,root,755)
+%attr(0755,root,root) /usr/lib/lib*.so
 /usr/include/utempter.h
+
+%changelog
+* Wed Apr 28 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [0.5-2]
+- added -q %setup parameter,
+- added stripping shared library and binaries,
+- added devel subpackage,
+- removed /sbin/ldconfig from Prereq (this is automatically generated).
