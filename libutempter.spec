@@ -4,6 +4,7 @@ Version:	0.5
 Release:	2
 Copyright:	MIT
 Group:		Base
+Group(pl):	Podstawy
 Source:		%{name}-%{version}.tar.gz
 Prereq:		/usr/sbin/groupadd, fileutils
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -16,6 +17,7 @@ accomplishes this task by acting as a buffer between root and the programs.
 %package devel
 Summary:	utempter library header files
 Group:		Development/Libraties
+Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
 
 %description devel
