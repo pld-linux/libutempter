@@ -2,11 +2,12 @@ Summary:	Privledged helper for utmpx updates
 Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.1
-Release:	4
+Release:	5
 Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.gz
+Prereq:		fileutils
 Prereq:		/sbin/ldconfig
 Prereq:         SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
