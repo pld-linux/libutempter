@@ -20,7 +20,7 @@ security. It accomplishes this task by acting as a buffer between root
 and the programs.
 
 %description -l pl
-Utempter jest programem pozwalaj±cym na zapisywanie uzytkownikom do
+Utempter jest programem pozwalaj±cym u¿ytkownikom na zapisywanie do
 pliku /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 
 %package devel
@@ -35,7 +35,7 @@ Requires:	%{name} = %{version}
 utempter library header files.
 
 %description -l pl devel
-Pliki nag³ówkowe utempter.
+Pliki nag³ówkowe utemptera.
 
 %prep
 %setup -q
@@ -50,8 +50,8 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
- 
-%post   -p /sbin/ldconfig
+
+%post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %clean
