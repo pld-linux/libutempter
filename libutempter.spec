@@ -42,13 +42,13 @@ strip --strip-unneeded $RPM_BUILD_ROOT/usr/{lib/lib*.so.*.*,sbin/*}
 /sbin/ldconfig
 
 if [ -f /var/log/wtmp ]; then
-    chown root.utmp /var/log/wtmp
-    chmod 664 /var/log/wtmp
+	chown root.utmp /var/log/wtmp
+	chmod 664 /var/log/wtmp
 fi
 
 if [ -f /var/run/utmp ]; then
-    chown root.utmp /var/run/utmp
-    chmod 664 /var/run/utmp
+	chown root.utmp /var/run/utmp
+	chmod 664 /var/run/utmp
 fi
 
 %postun -p /sbin/ldconfig
@@ -63,7 +63,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(0755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/utempter.h
 
 %changelog
