@@ -2,7 +2,7 @@ Summary:	Privledged helper for utmpx updates
 Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.1
-Release:	3
+Release:	4
 Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
@@ -56,6 +56,7 @@ install -d $RPM_BUILD_ROOT/var/run
 %post
 /sbin/ldconfig
 
+rm -f /var/run/utmp
 if [ -f /var/run/utmpx ]; then
 	chown root.utmp /var/run/utmpx
 	chmod 664 /var/run/utmpx
