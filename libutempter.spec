@@ -2,7 +2,7 @@ Summary:	Privileged helper for utmpx updates
 Summary(pl):	Program pozwalaj±cy na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.2
-Release:	5
+Release:	6
 License:	MIT
 Group:		Base
 Group(de):	Gründsätzlich
