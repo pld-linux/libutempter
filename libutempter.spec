@@ -3,11 +3,12 @@ Summary(pl):	Biblioteka pozwalaj±ca na zapisywanie w utmpx
 Name:		utempter
 Version:	0.5.2
 Release:	3
-Copyright:	MIT
+License:	MIT
 Group:		Base
+Group(de):	Gründsätzlich
 Group(pl):	Podstawowe
 Source0:	%{name}-%{version}.tar.gz
-Patch0:		utempter-lastlog.patch
+Patch0:		%{name}-lastlog.patch
 Prereq:		/sbin/ldconfig
 Prereq:		SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,6 +26,7 @@ pliku /var/run/utmpx bez naruszania bezpieczeñstwa systemu.
 %package devel
 Summary:	utempter library header files
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -40,14 +42,11 @@ Pliki nag³ówkowe utempter.
 %patch -p1
 
 %build
-%{__make} CFLAGS="$RPM_OPT_FLAGS"
+%{__make} CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} PREFIX=$RPM_BUILD_ROOT install
-
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-strip $RPM_BUILD_ROOT%{_sbindir}/*
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
