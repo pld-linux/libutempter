@@ -5,12 +5,12 @@ Summary(pt_BR):	Programa para atualizaГЦo do utmp/wtmp
 Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
-Version:	0.5.3
-Release:	1
-License:	MIT
+Version:	0.5.5
+Release:	1.1
+License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
-# Source0-md5:	44ffda459980482028fd90500a96b21b
+# Source0-md5:	a628f149132e2f729bc4601e6a4f6c29
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
 PreReq:		SysVinit >= 2.76-14
@@ -49,17 +49,17 @@ Utempter - це утил╕та, що дозволя╓ програмам записувати ╕нформац╕ю в
 користувача.
 
 %package devel
-Summary:	utempter library and header files
-Summary(pl):	Pliki nagЁСwkowe oraz biblioteki utemptera
+Summary:	Header file for utempter library
+Summary(pl):	Plik nagЁСwkowy biblioteki utemptera
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libutempter0-devel
 
 %description devel
-utempter library and header files.
+Header file for utempter library.
 
 %description devel -l pl
-Pliki nagЁСwkowe oraz biblioteki utemptera.
+Plik nagЁСwkowy biblioteki utemptera.
 
 %prep
 %setup -q
@@ -69,10 +69,11 @@ Pliki nagЁСwkowe oraz biblioteki utemptera.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	RPM_OPT_FLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	LIBDIR="%{_libdir}" \
 	RPM_BUILD_ROOT=$RPM_BUILD_ROOT
@@ -89,7 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) %{_sbindir}/*
-%attr(0755,root,root) %{_libdir}/lib*.so.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
