@@ -7,7 +7,6 @@ Copyright:	MIT
 Group:		Base
 Group(pl):	Podstawowe
 Source:		%{name}-%{version}.tar.gz
-Prereq:		fileutils
 Prereq:		/sbin/ldconfig
 Prereq:         SysVinit >= 2.76-14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -52,12 +51,6 @@ install -d $RPM_BUILD_ROOT/var/run
 
 %post
 /sbin/ldconfig
-
-rm -f /var/run/utmp
-if [ -f /var/run/utmpx ]; then
-	chown root.utmp /var/run/utmpx
-	chmod 664 /var/run/utmpx
-fi
 
 %postun
 /sbin/ldconfig
