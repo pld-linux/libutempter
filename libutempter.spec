@@ -14,8 +14,8 @@ Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
 PreReq:		group(utmp)
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	libutempter0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Utempter is a utility which allows programs to log information to a
@@ -87,9 +87,9 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/ldconfig
 if [ ! -f /var/run/utmpx ]; then
-	umask 2
+	umask 002
 	touch /var/run/utmpx
-	chown root.utmp /var/run/utmpx
+	chown root:utmp /var/run/utmpx
 	chmod 0664 /var/run/utmpx
 fi
 
