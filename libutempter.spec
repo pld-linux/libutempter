@@ -6,7 +6,7 @@ Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.5
-Release:	5
+Release:	5.1
 License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
@@ -84,7 +84,15 @@ install -d $RPM_BUILD_ROOT/var/run
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+if [ ! -f /var/run/utmpx ]; then
+	umask 2
+	touch /var/run/utmpx
+	chown root.utmp /var/run/utmpx
+	chmod 0664 /var/run/utmpx
+fi
+
 %postun	-p /sbin/ldconfig
 
 %files
