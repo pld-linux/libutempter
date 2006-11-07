@@ -6,14 +6,15 @@ Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.5
-Release:	6
+Release:	7
 License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	a628f149132e2f729bc4601e6a4f6c29
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
-PreReq:		group(utmp)
+Requires(post,postun):	/sbin/ldconfig
+Provides:	group(utmp)
 Obsoletes:	libutempter0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -84,6 +85,9 @@ install -d $RPM_BUILD_ROOT/var/run
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+%groupadd -g 22 utmp
+
 %post
 /sbin/ldconfig
 if [ ! -f /var/run/utmpx ]; then
@@ -93,14 +97,17 @@ if [ ! -f /var/run/utmpx ]; then
 	chmod 0664 /var/run/utmpx
 fi
 
-%postun	-p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+if [ "$1" = "0" ]; then
+	%groupremove utmp
+fi
 
 %files
 %defattr(644,root,root,755)
 %attr(2755,root,utmp) %{_sbindir}/utempter
 %attr(755,root,root) %{_sbindir}/utmp-cleanup
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
 %files devel
