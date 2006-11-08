@@ -13,7 +13,11 @@ Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	a628f149132e2f729bc4601e6a4f6c29
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
+BuildRequires:	rpmbuild(macros) >= 1.202
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
 Requires(post,postun):	/sbin/ldconfig
+Requires(postun):	/usr/sbin/groupdel
 Provides:	group(utmp)
 Obsoletes:	libutempter0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
