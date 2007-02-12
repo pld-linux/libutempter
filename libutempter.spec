@@ -1,9 +1,9 @@
 Summary:	Privileged helper for utmpx updates
-Summary(es.UTF-8):   Programa para actualización del utmp/wtmp
-Summary(pl.UTF-8):   Program pozwalający na zapisywanie w utmpx
-Summary(pt_BR.UTF-8):   Programa para atualização do utmp/wtmp
-Summary(ru.UTF-8):   Привилегированная программа для изменений в utmp/wtmp
-Summary(uk.UTF-8):   Привілейована програма для внесення змін до utmp/wtmp
+Summary(es.UTF-8):	Programa para actualización del utmp/wtmp
+Summary(pl.UTF-8):	Program pozwalający na zapisywanie w utmpx
+Summary(pt_BR.UTF-8):	Programa para atualização do utmp/wtmp
+Summary(ru.UTF-8):	Привилегированная программа для изменений в utmp/wtmp
+Summary(uk.UTF-8):	Привілейована програма для внесення змін до utmp/wtmp
 Name:		utempter
 Version:	0.5.5
 Release:	7
@@ -55,7 +55,7 @@ Utempter - це утиліта, що дозволяє програмам зап�
 
 %package devel
 Summary:	Header file for utempter library
-Summary(pl.UTF-8):   Plik nagłówkowy biblioteki utemptera
+Summary(pl.UTF-8):	Plik nagłówkowy biblioteki utemptera
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libutempter0-devel
