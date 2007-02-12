@@ -1,9 +1,9 @@
 Summary:	Privileged helper for utmpx updates
-Summary(es):	Programa para actualizaciСn del utmp/wtmp
-Summary(pl):	Program pozwalaj╠cy na zapisywanie w utmpx
-Summary(pt_BR):	Programa para atualizaГЦo do utmp/wtmp
-Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
-Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
+Summary(es.UTF-8):   Programa para actualizaciцЁn del utmp/wtmp
+Summary(pl.UTF-8):   Program pozwalajд┘cy na zapisywanie w utmpx
+Summary(pt_BR.UTF-8):   Programa para atualizaц╖цёo do utmp/wtmp
+Summary(ru.UTF-8):   п÷я─п╦п╡п╦п╩п╣пЁп╦я─п╬п╡п╟п╫п╫п╟я▐ п©я─п╬пЁя─п╟п╪п╪п╟ п╢п╩я▐ п╦п╥п╪п╣п╫п╣п╫п╦п╧ п╡ utmp/wtmp
+Summary(uk.UTF-8):   п÷я─п╦п╡я√п╩п╣п╧п╬п╡п╟п╫п╟ п©я─п╬пЁя─п╟п╪п╟ п╢п╩я▐ п╡п╫п╣я│п╣п╫п╫я▐ п╥п╪я√п╫ п╢п╬ utmp/wtmp
 Name:		utempter
 Version:	0.5.5
 Release:	7
@@ -28,34 +28,34 @@ privileged file (/var/run/utmpx), without compromising system
 security. It accomplishes this task by acting as a buffer between root
 and the programs.
 
-%description -l es
-Programa para actualizaciСn del utmp/wtmp.
+%description -l es.UTF-8
+Programa para actualizaciцЁn del utmp/wtmp.
 
-%description -l pl
-Utempter jest programem pozwalaj╠cym u©ytkownikom na zapisywanie do
-pliku /var/run/utmpx bez naruszania bezpieczeЯstwa systemu.
+%description -l pl.UTF-8
+Utempter jest programem pozwalajд┘cym uе╪ytkownikom na zapisywanie do
+pliku /var/run/utmpx bez naruszania bezpieczeе└stwa systemu.
 
-%description -l pt_BR
-O Utempter И um utilitАrios que permite a programas guardar informaГЦo
-Ю arquivos privilegiados (/var/run/utmp), sem comprometer a seguranГa
+%description -l pt_BR.UTF-8
+O Utempter ц╘ um utilitц║rios que permite a programas guardar informaц╖цёo
+ц═ arquivos privilegiados (/var/run/utmp), sem comprometer a seguranц╖a
 do sistema. Ele faz esta tarefa atuando como um "buffer" entre o
-usuАrio root e os programas.
+usuц║rio root e os programas.
 
-%description -l ru
-Utempter - это утилита, которая позволяет программам записывать
-информацию в привилегированный файл (/var/run/utmp) без нарушения
-системной безопасности. Она исполняет эту задачу, выступая буфером
-между root'ом и пользовательскими программами.
+%description -l ru.UTF-8
+Utempter - я█я┌п╬ я┐я┌п╦п╩п╦я┌п╟, п╨п╬я┌п╬я─п╟я▐ п©п╬п╥п╡п╬п╩я▐п╣я┌ п©я─п╬пЁя─п╟п╪п╪п╟п╪ п╥п╟п©п╦я│я▀п╡п╟я┌я▄
+п╦п╫я└п╬я─п╪п╟я├п╦я▌ п╡ п©я─п╦п╡п╦п╩п╣пЁп╦я─п╬п╡п╟п╫п╫я▀п╧ я└п╟п╧п╩ (/var/run/utmp) п╠п╣п╥ п╫п╟я─я┐я┬п╣п╫п╦я▐
+я│п╦я│я┌п╣п╪п╫п╬п╧ п╠п╣п╥п╬п©п╟я│п╫п╬я│я┌п╦. п·п╫п╟ п╦я│п©п╬п╩п╫я▐п╣я┌ я█я┌я┐ п╥п╟п╢п╟я┤я┐, п╡я▀я│я┌я┐п©п╟я▐ п╠я┐я└п╣я─п╬п╪
+п╪п╣п╤п╢я┐ root'п╬п╪ п╦ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▄я│п╨п╦п╪п╦ п©я─п╬пЁя─п╟п╪п╪п╟п╪п╦.
 
-%description -l uk
-Utempter - це утил╕та, що дозволя╓ програмам записувати ╕нформац╕ю в
-прив╕лейований файл (/var/run/utmp) без порушення системно╖ безпеки.
-Вона викону╓ цю задачу, виступаючи буфером м╕ж root'ом та програмами
-користувача.
+%description -l uk.UTF-8
+Utempter - я├п╣ я┐я┌п╦п╩я√я┌п╟, я┴п╬ п╢п╬п╥п╡п╬п╩я▐я■ п©я─п╬пЁя─п╟п╪п╟п╪ п╥п╟п©п╦я│я┐п╡п╟я┌п╦ я√п╫я└п╬я─п╪п╟я├я√я▌ п╡
+п©я─п╦п╡я√п╩п╣п╧п╬п╡п╟п╫п╦п╧ я└п╟п╧п╩ (/var/run/utmp) п╠п╣п╥ п©п╬я─я┐я┬п╣п╫п╫я▐ я│п╦я│я┌п╣п╪п╫п╬я≈ п╠п╣п╥п©п╣п╨п╦.
+п▓п╬п╫п╟ п╡п╦п╨п╬п╫я┐я■ я├я▌ п╥п╟п╢п╟я┤я┐, п╡п╦я│я┌я┐п©п╟я▌я┤п╦ п╠я┐я└п╣я─п╬п╪ п╪я√п╤ root'п╬п╪ я┌п╟ п©я─п╬пЁя─п╟п╪п╟п╪п╦
+п╨п╬я─п╦я│я┌я┐п╡п╟я┤п╟.
 
 %package devel
 Summary:	Header file for utempter library
-Summary(pl):	Plik nagЁСwkowy biblioteki utemptera
+Summary(pl.UTF-8):   Plik nagе┌цЁwkowy biblioteki utemptera
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libutempter0-devel
@@ -63,8 +63,8 @@ Obsoletes:	libutempter0-devel
 %description devel
 Header file for utempter library.
 
-%description devel -l pl
-Plik nagЁСwkowy biblioteki utemptera.
+%description devel -l pl.UTF-8
+Plik nagе┌цЁwkowy biblioteki utemptera.
 
 %prep
 %setup -q
