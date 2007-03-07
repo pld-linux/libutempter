@@ -6,7 +6,7 @@ Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
 Version:	0.5.5
-Release:	7
+Release:	8
 License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
@@ -14,10 +14,10 @@ Source0:	%{name}-%{version}.tar.gz
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
 BuildRequires:	rpmbuild(macros) >= 1.202
-Requires(pre):	/usr/bin/getgid
-Requires(pre):	/usr/sbin/groupadd
 Requires(post,postun):	/sbin/ldconfig
 Requires(postun):	/usr/sbin/groupdel
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
 Provides:	group(utmp)
 Obsoletes:	libutempter0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
