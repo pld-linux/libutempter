@@ -5,17 +5,22 @@ Summary(pt_BR):	Programa para atualizaГЦo do utmp/wtmp
 Summary(ru):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk):	Прив╕лейована програма для внесення зм╕н до utmp/wtmp
 Name:		utempter
-Version:	0.5.3
-Release:	1
-License:	MIT
+Version:	0.5.5
+Release:	8
+License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
-# Source0-md5:	44ffda459980482028fd90500a96b21b
+# Source0-md5:	a628f149132e2f729bc4601e6a4f6c29
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
-PreReq:		SysVinit >= 2.76-14
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRequires:	rpmbuild(macros) >= 1.202
+Requires(post,postun):	/sbin/ldconfig
+Requires(postun):	/usr/sbin/groupdel
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
+Provides:	group(utmp)
 Obsoletes:	libutempter0
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Utempter is a utility which allows programs to log information to a
@@ -49,17 +54,17 @@ Utempter - це утил╕та, що дозволя╓ програмам записувати ╕нформац╕ю в
 користувача.
 
 %package devel
-Summary:	utempter library and header files
-Summary(pl):	Pliki nagЁСwkowe oraz biblioteki utemptera
+Summary:	Header file for utempter library
+Summary(pl):	Plik nagЁСwkowy biblioteki utemptera
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libutempter0-devel
 
 %description devel
-utempter library and header files.
+Header file for utempter library.
 
 %description devel -l pl
-Pliki nagЁСwkowe oraz biblioteki utemptera.
+Plik nagЁСwkowy biblioteki utemptera.
 
 %prep
 %setup -q
@@ -69,10 +74,11 @@ Pliki nagЁСwkowe oraz biblioteki utemptera.
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags}"
+	RPM_OPT_FLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	LIBDIR="%{_libdir}" \
 	RPM_BUILD_ROOT=$RPM_BUILD_ROOT
@@ -83,14 +89,29 @@ install -d $RPM_BUILD_ROOT/var/run
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%pre
+%groupadd -g 22 utmp
+
+%post
+/sbin/ldconfig
+if [ ! -f /var/run/utmpx ]; then
+	umask 002
+	touch /var/run/utmpx
+	chown root:utmp /var/run/utmpx
+	chmod 0664 /var/run/utmpx
+fi
+
+%postun
+/sbin/ldconfig
+if [ "$1" = "0" ]; then
+	%groupremove utmp
+fi
 
 %files
 %defattr(644,root,root,755)
-%attr(2755,root,utmp) %{_sbindir}/*
-%attr(0755,root,root) %{_libdir}/lib*.so.*
-
+%attr(2755,root,utmp) %{_sbindir}/utempter
+%attr(755,root,root) %{_sbindir}/utmp-cleanup
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
 %files devel
