@@ -6,7 +6,7 @@ Summary(ru.UTF-8):	Привилегированная программа для 
 Summary(uk.UTF-8):	Привілейована програма для внесення змін до utmp/wtmp
 Name:		utempter
 Version:	0.5.5
-Release:	7
+Release:	8
 License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
