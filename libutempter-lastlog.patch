@@ -1,0 +1,43 @@
+--- libutempter-1.1.5/utempter.c.org	2010-09-21 14:12:11.474543375 +0200
++++ libutempter-1.1.5/utempter.c	2010-09-21 14:13:35.669584497 +0200
+@@ -113,20 +113,27 @@
+ {
+ 	struct utmp ut;
+ 	struct timeval tv;
++	int fd;
++	struct lastlog ll;
+ 
+ #ifdef __GLIBC__
+ 	int     offset;
+ #endif
+ 
+ 	memset(&ut, 0, sizeof(ut));
++	memset(&ll, 0, sizeof(ll));
+ 
+ 	memset(&tv, 0, sizeof(tv));
+ 	(void) gettimeofday(&tv, 0);
++	ll.ll_time = time(NULL);
+ 
+ 	strncpy(ut.ut_name, user, sizeof(ut.ut_name));
+ 	strncpy(ut.ut_line, term, sizeof(ut.ut_line));
+-	if (host)
++	strncpy(ll.ll_line, term, sizeof(ll.ll_line));
++	if (host) {
+ 		strncpy(ut.ut_host, host, sizeof(ut.ut_host));
++		strncpy(ll.ll_host, host, sizeof(ll.ll_host));
++	}
+ 
+ #ifdef __GLIBC__
+ 
+@@ -156,6 +163,11 @@
+ 	endutent();
+ 
+ 	(void) updwtmp(_PATH_WTMP, &ut);
++	if ((fd = open(_PATH_LASTLOG, O_RDWR)) != -1) {
++		lseek(fd, (off_t) ((long)pw->pw_uid * sizeof(ll)), SEEK_SET);
++		write(fd, &ll, sizeof(ll));
++		close(fd);
++	}
+ 
+ #elif defined(__FreeBSD__)
+ 

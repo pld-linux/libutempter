@@ -4,23 +4,25 @@ Summary(pl.UTF-8):	Program pozwalający na zapisywanie w utmpx
 Summary(pt_BR.UTF-8):	Programa para atualização do utmp/wtmp
 Summary(ru.UTF-8):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk.UTF-8):	Привілейована програма для внесення змін до utmp/wtmp
-Name:		utempter
-Version:	0.5.5
-Release:	10
+%define	utempter_compat_ver	0.5.5
+Name:		libutempter
+Version:	1.1.5
+Release:	0.1
 License:	MIT or LGPL
 Group:		Base
-Source0:	%{name}-%{version}.tar.gz
-# Source0-md5:	a628f149132e2f729bc4601e6a4f6c29
+Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
+# Source0-md5:	d62a93ba9f3796a91cf03be5ef25a9a1
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
-Patch2:		%{name}-64bit_timeval.patch
 BuildRequires:	rpmbuild(macros) >= 1.202
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(post,postun):	/sbin/ldconfig
 Requires(postun):	/usr/sbin/groupdel
 Provides:	group(utmp)
+Provides:	utempter = %{utempter_compat_ver}
 Obsoletes:	libutempter0
+Obsoletes:	utempter
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,6 +62,7 @@ Summary(pl.UTF-8):	Plik nagłówkowy biblioteki utemptera
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Obsoletes:	libutempter0-devel
+Obsoletes:	utempter-devel
 
 %description devel
 Header file for utempter library.
@@ -71,19 +74,21 @@ Plik nagłówkowy biblioteki utemptera.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__make} \
 	CC="%{__cc}" \
-	RPM_OPT_FLAGS="%{rpmcflags}"
+	RPM_OPT_FLAGS="%{rpmcppflags} %{rpmcflags}" \
+	libdir="%{_libdir}" \
+	libexecdir="%{_libexecdir}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	LIBDIR="%{_libdir}" \
-	RPM_BUILD_ROOT=$RPM_BUILD_ROOT
+	libdir="%{_libdir}" \
+	libexecdir="%{_libexecdir}" \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
