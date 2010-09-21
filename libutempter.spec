@@ -6,13 +6,14 @@ Summary(ru.UTF-8):	Привилегированная программа для 
 Summary(uk.UTF-8):	Привілейована програма для внесення змін до utmp/wtmp
 Name:		utempter
 Version:	0.5.5
-Release:	9
+Release:	10
 License:	MIT or LGPL
 Group:		Base
 Source0:	%{name}-%{version}.tar.gz
 # Source0-md5:	a628f149132e2f729bc4601e6a4f6c29
 Patch0:		%{name}-lastlog.patch
 Patch1:		%{name}-utmp-cleanup.patch
+Patch2:		%{name}-64bit_timeval.patch
 BuildRequires:	rpmbuild(macros) >= 1.202
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
@@ -70,6 +71,7 @@ Plik nagłówkowy biblioteki utemptera.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__make} \
