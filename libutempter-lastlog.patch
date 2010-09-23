@@ -34,7 +34,7 @@
  
  	(void) updwtmp(_PATH_WTMP, &ut);
 +	if ((fd = open(_PATH_LASTLOG, O_RDWR)) != -1) {
-+		lseek(fd, (off_t) ((long)pw->pw_uid * sizeof(ll)), SEEK_SET);
++		lseek(fd, (off_t) ((long)getuid() * sizeof(ll)), SEEK_SET);
 +		write(fd, &ll, sizeof(ll));
 +		close(fd);
 +	}

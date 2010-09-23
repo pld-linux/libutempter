@@ -7,8 +7,8 @@ Summary(uk.UTF-8):	Привілейована програма для внесе
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
 Version:	1.1.5
-Release:	0.1
-License:	MIT or LGPL
+Release:	1
+License:	LGPL
 Group:		Base
 Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
 # Source0-md5:	d62a93ba9f3796a91cf03be5ef25a9a1
@@ -70,6 +70,18 @@ Header file for utempter library.
 %description devel -l pl.UTF-8
 Plik nagłówkowy biblioteki utemptera.
 
+%package static
+Summary:	Static utempter library
+Summary(pl.UTF-8):	Statyczna biblioteka utemptera
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static utempter library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka utemptera
+
 %prep
 %setup -q
 %patch0 -p1
@@ -89,6 +101,10 @@ rm -rf $RPM_BUILD_ROOT
 	libdir="%{_libdir}" \
 	libexecdir="%{_libexecdir}" \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_sbindir}
+ln -s %{_libdir}/utempter/utempter $RPM_BUILD_ROOT%{_sbindir}
+ln -s %{_libdir}/utempter/utmp-cleanup $RPM_BUILD_ROOT%{_sbindir}
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmpx
@@ -116,12 +132,20 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%attr(2755,root,utmp) %{_sbindir}/utempter
+%dir %{_libdir}/utempter
+%attr(2755,root,utmp) %{_libdir}/utempter/utempter
+%attr(755,root,root) %{_sbindir}/utempter
+%attr(755,root,root) %{_libdir}/utempter/utmp-cleanup
 %attr(755,root,root) %{_sbindir}/utmp-cleanup
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/utempter.h
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/lib*.a
