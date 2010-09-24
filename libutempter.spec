@@ -7,7 +7,7 @@ Summary(uk.UTF-8):	Привілейована програма для внесе
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
 Version:	1.1.5
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Base
 Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
@@ -61,6 +61,7 @@ Summary:	Header file for utempter library
 Summary(pl.UTF-8):	Plik nagłówkowy biblioteki utemptera
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Provides:	utempter-devel = %{utempter_compat_ver}
 Obsoletes:	libutempter0-devel
 Obsoletes:	utempter-devel
 
@@ -75,6 +76,7 @@ Summary:	Static utempter library
 Summary(pl.UTF-8):	Statyczna biblioteka utemptera
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Provides:	utempter-static = %{utempter_compat_ver}
 
 %description static
 Static utempter library.
