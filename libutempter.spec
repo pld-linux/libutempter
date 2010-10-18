@@ -134,20 +134,20 @@ fi
 
 %files
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_sbindir}/utempter
+%attr(755,root,root) %{_sbindir}/utmp-cleanup
 %dir %{_libdir}/utempter
 %attr(2755,root,utmp) %{_libdir}/utempter/utempter
-%attr(755,root,root) %{_sbindir}/utempter
 %attr(755,root,root) %{_libdir}/utempter/utmp-cleanup
-%attr(755,root,root) %{_sbindir}/utmp-cleanup
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
+%attr(755,root,root) %{_libdir}/libutempter.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libutempter.so.0
 %attr(664,root,utmp) %ghost /var/run/utmpx
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libutempter.so
 %{_includedir}/utempter.h
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libutempter.a
