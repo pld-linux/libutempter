@@ -1,5 +1,5 @@
---- libutempter-1.1.5/utempter.c.org	2010-09-21 14:12:11.474543375 +0200
-+++ libutempter-1.1.5/utempter.c	2010-09-21 14:13:35.669584497 +0200
+--- libutempter-1.1.6/utempter.c.orig	2010-11-04 18:14:53.000000000 +0100
++++ libutempter-1.1.6/utempter.c	2012-06-23 21:51:40.962552952 +0200
 @@ -113,20 +113,27 @@
  {
  	struct utmp ut;
@@ -8,7 +8,7 @@
 +	struct lastlog ll;
  
  #ifdef __GLIBC__
- 	int     offset;
+ 	size_t offset;
  #endif
  
  	memset(&ut, 0, sizeof(ut));
@@ -29,7 +29,7 @@
  
  #ifdef __GLIBC__
  
-@@ -156,6 +163,11 @@
+@@ -155,6 +162,11 @@
  	endutent();
  
  	(void) updwtmp(_PATH_WTMP, &ut);

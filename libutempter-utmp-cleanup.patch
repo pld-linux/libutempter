@@ -1,5 +1,5 @@
---- libutempter-1.1.5/Makefile~	2007-02-19 13:14:08.000000000 +0100
-+++ libutempter-1.1.5/Makefile	2010-09-21 14:16:43.025917709 +0200
+--- libutempter-1.1.6/Makefile.orig	2010-11-04 18:14:53.000000000 +0100
++++ libutempter-1.1.6/Makefile	2012-06-23 21:52:49.619216737 +0200
 @@ -27,7 +27,7 @@
  STATICLIB = lib$(PROJECT).a
  MAP = lib$(PROJECT).map
@@ -9,13 +9,16 @@
  
  INSTALL = install
  libdir = /usr/lib
-@@ -70,8 +70,9 @@
+@@ -72,6 +72,7 @@
  	$(INSTALL) -p -m644 $(PROJECT).h $(DESTDIR)$(includedir)/
  	$(INSTALL) -p -m755 $(SHAREDLIB) $(DESTDIR)$(libdir)/$(SHAREDLIB).$(VERSION)
  	$(INSTALL) -p -m644 $(STATICLIB) $(DESTDIR)$(libdir)/
 +	$(INSTALL) -p -m755 utmp-cleanup $(DESTDIR)$(libexecdir)/$(PROJECT)/
  	ln -s $(SHAREDLIB).$(VERSION) $(DESTDIR)$(libdir)/$(SONAME)
  	ln -s $(SONAME) $(DESTDIR)$(libdir)/$(SHAREDLIB)
+ 	$(INSTALL) -p -m644 $(PROJECT).3 $(DESTDIR)$(man3dir)/
+@@ -81,4 +82,4 @@
+ 	done
  
  clean:
 -	$(RM) $(TARGETS) iface.o iface.os core *~
