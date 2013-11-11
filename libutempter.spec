@@ -115,6 +115,8 @@ install -d $RPM_BUILD_ROOT/var/run
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+# not in trigger because utmpx is %%ghost, and %%ghost-ed files
+# are removed when they'are uninstalled
 %pretrans
 if [ -e /var/run/utmpx ]; then
 	if [ -s /var/run/utmp ]; then
