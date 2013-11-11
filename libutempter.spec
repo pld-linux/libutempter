@@ -23,6 +23,7 @@ Provides:	group(utmp)
 Provides:	utempter = %{utempter_compat_ver}
 Obsoletes:	libutempter0
 Obsoletes:	utempter
+Conflicts:	rc-sctipts < 0.4.9-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
