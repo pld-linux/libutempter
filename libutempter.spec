@@ -7,7 +7,7 @@ Summary(uk.UTF-8):	Привілейована програма для внесе
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
 Version:	1.1.6
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		Base
 Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
@@ -23,7 +23,7 @@ Provides:	group(utmp)
 Provides:	utempter = %{utempter_compat_ver}
 Obsoletes:	libutempter0
 Obsoletes:	utempter
-Conflicts:	rc-sctipts < 0.4.9-1
+Conflicts:	rc-scripts < 0.4.9-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
