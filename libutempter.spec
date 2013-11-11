@@ -1,13 +1,13 @@
-Summary:	Privileged helper for utmpx updates
+Summary:	Privileged helper for utmp updates
 Summary(es.UTF-8):	Programa para actualización del utmp/wtmp
-Summary(pl.UTF-8):	Program pozwalający na zapisywanie w utmpx
+Summary(pl.UTF-8):	Program pozwalający na zapisywanie w utmp
 Summary(pt_BR.UTF-8):	Programa para atualização do utmp/wtmp
 Summary(ru.UTF-8):	Привилегированная программа для изменений в utmp/wtmp
 Summary(uk.UTF-8):	Привілейована програма для внесення змін до utmp/wtmp
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
 Version:	1.1.6
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Base
 Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
@@ -27,7 +27,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Utempter is a utility which allows programs to log information to a
-privileged file (/var/run/utmpx), without compromising system
+privileged file (/var/run/utmp), without compromising system
 security. It accomplishes this task by acting as a buffer between root
 and the programs.
 
@@ -36,7 +36,7 @@ Programa para actualización del utmp/wtmp.
 
 %description -l pl.UTF-8
 Utempter jest programem pozwalającym użytkownikom na zapisywanie do
-pliku /var/run/utmpx bez naruszania bezpieczeństwa systemu.
+pliku /var/run/utmp bez naruszania bezpieczeństwa systemu.
 
 %description -l pt_BR.UTF-8
 O Utempter é um utilitários que permite a programas guardar informação
@@ -109,7 +109,7 @@ ln -s %{_libdir}/utempter/utempter $RPM_BUILD_ROOT%{_sbindir}
 ln -s %{_libdir}/utempter/utmp-cleanup $RPM_BUILD_ROOT%{_sbindir}
 
 install -d $RPM_BUILD_ROOT/var/run
-:> $RPM_BUILD_ROOT/var/run/utmpx
+:> $RPM_BUILD_ROOT/var/run/utmp
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -119,17 +119,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-if [ ! -f /var/run/utmpx ]; then
+if [ ! -f /var/run/utmp ]; then
 	umask 002
-	touch /var/run/utmpx
-	chown root:utmp /var/run/utmpx
-	chmod 0664 /var/run/utmpx
+	touch /var/run/utmp
+	chown root:utmp /var/run/utmp
+	chmod 0664 /var/run/utmp
 fi
 
 %postun
 /sbin/ldconfig
 if [ "$1" = "0" ]; then
 	%groupremove utmp
+fi
+
+%triggerpostun -- libutempter < 1.1.6-2
+if [ -e /var/run/utmpx ]; then
+	if [ -s /var/run/utmp ]; then
+		# utmp always takes precedence, it's safe to remove utmpx
+		rm -f /var/run/utmpx
+	else
+		mv -f /var/run/utmpx /var/run/utmp
+	fi
 fi
 
 %files
@@ -142,7 +152,7 @@ fi
 %attr(755,root,root) %{_libdir}/utempter/utmp-cleanup
 %attr(755,root,root) %{_libdir}/libutempter.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libutempter.so.0
-%attr(664,root,utmp) %ghost /var/run/utmpx
+%attr(664,root,utmp) %ghost /var/run/utmp
 
 %files devel
 %defattr(644,root,root,755)

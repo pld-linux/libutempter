@@ -60,7 +60,7 @@ diff -urN utempter-0.5.3.org/utmp-cleanup.c utempter-0.5.3/utmp-cleanup.c
 +int clean=1;
 +int justcheck=0;
 +int fd;
-+char * file="/var/run/utmpx";
++char * file="/var/run/utmp";
 +	if(ac>1)file=av[1];
 +fd=open(file,O_RDWR,0);
 +	if(fd<0){
