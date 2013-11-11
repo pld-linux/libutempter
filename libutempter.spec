@@ -7,7 +7,7 @@ Summary(uk.UTF-8):	Привілейована програма для внесе
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
 Version:	1.1.6
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		Base
 Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
@@ -115,6 +115,16 @@ install -d $RPM_BUILD_ROOT/var/run
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pretrans
+if [ -e /var/run/utmpx ]; then
+	if [ -s /var/run/utmp ]; then
+		# utmp always takes precedence, it's safe to remove utmpx
+		rm -f /var/run/utmpx
+	else
+		mv -f /var/run/utmpx /var/run/utmp
+	fi
+fi
+
 %pre
 %groupadd -g 22 utmp
 
@@ -131,16 +141,6 @@ fi
 /sbin/ldconfig
 if [ "$1" = "0" ]; then
 	%groupremove utmp
-fi
-
-%triggerpostun -- libutempter < 1.1.6-2
-if [ -e /var/run/utmpx ]; then
-	if [ -s /var/run/utmp ]; then
-		# utmp always takes precedence, it's safe to remove utmpx
-		rm -f /var/run/utmpx
-	else
-		mv -f /var/run/utmpx /var/run/utmp
-	fi
 fi
 
 %files
