@@ -150,9 +150,9 @@ fi
 %doc README
 %attr(755,root,root) %{_sbindir}/utempter
 %attr(755,root,root) %{_sbindir}/utmp-cleanup
-%dir %{_libdir}/utempter
-%attr(2755,root,utmp) %{_libdir}/utempter/utempter
-%attr(755,root,root) %{_libdir}/utempter/utmp-cleanup
+%dir %{_libexecdir}/utempter
+%attr(2755,root,utmp) %{_libexecdir}/utempter/utempter
+%attr(755,root,root) %{_libexecdir}/utempter/utmp-cleanup
 %attr(755,root,root) %{_libdir}/libutempter.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libutempter.so.0
 %attr(664,root,utmp) %ghost /var/run/utmp
