@@ -106,8 +106,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_sbindir}
-ln -s %{_libdir}/utempter/utempter $RPM_BUILD_ROOT%{_sbindir}
-ln -s %{_libdir}/utempter/utmp-cleanup $RPM_BUILD_ROOT%{_sbindir}
+ln -s %{_libexecdir}/utempter/utempter $RPM_BUILD_ROOT%{_sbindir}
+ln -s %{_libexecdir}/utempter/utmp-cleanup $RPM_BUILD_ROOT%{_sbindir}
 
 install -d $RPM_BUILD_ROOT/var/run
 :> $RPM_BUILD_ROOT/var/run/utmp
