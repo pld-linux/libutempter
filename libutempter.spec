@@ -7,7 +7,7 @@ Summary(uk.UTF-8):	Привілейована програма для внесе
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
 Version:	1.1.6
-Release:	5
+Release:	6
 License:	LGPL v2.1+
 Group:		Base
 Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
@@ -117,15 +117,23 @@ rm -rf $RPM_BUILD_ROOT
 
 # not in trigger because utmpx is %%ghost, and %%ghost-ed files
 # are removed when they'are uninstalled
-%pretrans
-if [ -e /var/run/utmpx ]; then
-	if [ -s /var/run/utmp ]; then
-		# utmp always takes precedence, it's safe to remove utmpx
-		rm -f /var/run/utmpx
+%pretrans -p <lua>
+utmpx = io.open("/var/run/utmpx", "rb")
+if utmpx then
+	utmpx:close()
+	utmp_size = 0
+	utmp = io.open("/var/run/utmp", "rb")
+	if utmp then
+		utmp_size = utmp:seek("end")
+		utmp:close()
+	end
+	if utmp_size > 0 then
+		os.remove("/var/run/utmpx")
 	else
-		mv -f /var/run/utmpx /var/run/utmp
-	fi
-fi
+		os.remove("/var/run/utmp")
+		os.rename("/var/run/utmpx", "/var/run/utmp")
+	end
+end
 
 %pre
 %groupadd -g 22 utmp
