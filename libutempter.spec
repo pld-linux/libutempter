@@ -13,6 +13,7 @@ Group:		Base
 Source0:	http://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.gz
 # Source0-md5:	afe828ce87262d7e043770553004e162
 Patch0:		%{name}-utmp-cleanup.patch
+URL:		https://github.com/altlinux/libutempter
 BuildRequires:	rpmbuild(macros) >= 1.202
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
@@ -20,8 +21,8 @@ Requires(post,postun):	/sbin/ldconfig
 Requires(postun):	/usr/sbin/groupdel
 Provides:	group(utmp)
 Provides:	utempter = %{utempter_compat_ver}
-Obsoletes:	libutempter0
-Obsoletes:	utempter
+Obsoletes:	libutempter0 < 1
+Obsoletes:	utempter < 0.5.6
 Conflicts:	rc-scripts < 0.4.9-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -62,8 +63,8 @@ Summary(pl.UTF-8):	Plik nagłówkowy biblioteki utemptera
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Provides:	utempter-devel = %{utempter_compat_ver}
-Obsoletes:	libutempter0-devel
-Obsoletes:	utempter-devel
+Obsoletes:	libutempter0-devel < 1
+Obsoletes:	utempter-devel < 0.5.6
 
 %description devel
 Header file for utempter library.
