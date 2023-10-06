@@ -6,14 +6,13 @@ Summary(ru.UTF-8):	Привилегированная программа для 
 Summary(uk.UTF-8):	Привілейована програма для внесення змін до utmp/wtmp
 %define	utempter_compat_ver	0.5.5
 Name:		libutempter
-Version:	1.1.6
-Release:	6
+Version:	1.2.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Base
-Source0:	ftp://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.bz2
-# Source0-md5:	b43827806923903aba2bc7cd3a2d45b7
-Patch0:		%{name}-lastlog.patch
-Patch1:		%{name}-utmp-cleanup.patch
+Source0:	http://ftp.altlinux.org/pub/people/ldv/utempter/%{name}-%{version}.tar.gz
+# Source0-md5:	afe828ce87262d7e043770553004e162
+Patch0:		%{name}-utmp-cleanup.patch
 BuildRequires:	rpmbuild(macros) >= 1.202
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
@@ -88,7 +87,6 @@ Statyczna biblioteka utemptera
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} \
